@@ -1,0 +1,67 @@
+// C++ code
+//
+
+
+#define button 3
+#define greenLED 5
+#define redLED 6
+#define blueLED 7
+
+int state = 0;
+int old = 0;
+int buttonPress = 0;
+
+
+void setup() {
+  pinMode(button,INPUT);
+  pinMode(greenLED,OUTPUT);
+  pinMode(redLED,OUTPUT);
+  pinMode(blueLED,OUTPUT);
+  
+  
+  digitalWrite(greenLED,LOW);
+  digitalWrite(redLED,LOW);
+  digitalWrite(blueLED,LOW);
+  
+}
+
+void loop() {
+  
+  
+  buttonPress = digitalRead(button);
+  if (buttonPress == 1){
+    delay(50);
+    buttonPress = digitalRead(button);
+    if(buttonPress == 0){
+      state = old + 1;
+    }}
+  else{
+    delay(100);
+  }
+  switch (state) {                     
+    case 1:                         
+    digitalWrite(greenLED,HIGH);
+    digitalWrite(redLED,LOW);
+    digitalWrite(blueLED,LOW);
+    old = state;
+    break;
+    case 2:                        
+    digitalWrite(greenLED,LOW);  
+    digitalWrite(redLED,HIGH);
+    digitalWrite(blueLED,LOW);
+    old = state;
+    break;
+    case 3: 
+    digitalWrite(greenLED,LOW);
+    digitalWrite(redLED,LOW);
+    digitalWrite(blueLED,HIGH);
+    old = state;
+    break;
+  default:
+    digitalWrite(greenLED,LOW);
+    digitalWrite(redLED,LOW);
+    digitalWrite(blueLED,LOW);
+    old = 0;
+  break;
+ }
+}
